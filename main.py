@@ -1,17 +1,23 @@
-from telethon import TelegramClient, functions, errors
+import os
 import asyncio
 import datetime
 import pytz
-import os
+from telethon import TelegramClient, functions, errors
 
 api_id = int(os.getenv('API_ID'))
 api_hash = os.getenv('API_HASH')
-phone_number = os.getenv('PHONE')
+phone = os.getenv('PHONE')
+code = os.getenv('TELEGRAM_CODE')  # Одноразовый код для первого входа
 
 client = TelegramClient('session_name', api_id, api_hash)
 
 async def main():
-    await client.start(phone_number)
+    await client.connect()
+
+    if not await client.is_user_authorized():
+        await client.send_code_request(phone)
+        await client.sign_in(phone, code)
+        print("Вход выполнен успешно!")
 
     prev_time = None
     moscow = pytz.timezone('Europe/Moscow')
