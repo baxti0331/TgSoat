@@ -33,4 +33,4 @@ async def main():
                 print(f'Ошибка: {e}')
         await asyncio.sleep(30)
 
-client.loop.run_until_complete(main())
+client.loop.run_until_complete(main()) 
