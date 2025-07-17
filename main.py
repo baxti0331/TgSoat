@@ -18,7 +18,7 @@ async def main():
     while True:
         now = datetime.datetime.now(moscow).strftime('%H:%M')
         if now != prev_time:
-            name = f'Иван | {now}'
+            name = f'Бахти | {now}'
             try:
                 await client(functions.account.UpdateProfileRequest(
                     first_name=name,
