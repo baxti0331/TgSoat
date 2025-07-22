@@ -1,2 +1,2 @@
-telethon
-pytz
+python>=3.9
+aiogram==3.0.0b7
